@@ -21,6 +21,7 @@
             background: #000;
             color: white;
             overflow-x: hidden;
+            font-size: 14px; /* Default lebih kecil untuk mobile */
         }
 
         .gold-gradient {
@@ -33,22 +34,19 @@
             background: var(--glass);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .glass-card:hover {
-            border-color: rgba(212, 175, 55, 0.4);
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
         }
 
         .size-table th {
             background: rgba(255, 255, 255, 0.05);
             color: #d4af37;
+            font-size: 0.7rem;
         }
 
         .size-table td {
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 10px 8px;
+            font-size: 0.85rem;
         }
 
         .btn-gold {
@@ -60,11 +58,18 @@
         .step-badge {
             background: #d4af37;
             color: black;
-            padding: 2px 12px;
+            padding: 1px 8px;
             border-radius: 4px;
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             font-weight: 900;
             text-transform: uppercase;
+        }
+
+        /* Optimasi Spasi Mobile */
+        @media (max-width: 640px) {
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+            h1 { font-size: 2.5rem !important; line-height: 1.1; }
+            .hero-min-height { min-height: 80vh; }
         }
     </style>
 </head>
@@ -84,161 +89,141 @@ Jumlah: `;
     </script>
 
     <!-- Navbar -->
-    <nav class="fixed w-full z-50 px-6 py-5 flex justify-between items-center bg-black/80 backdrop-blur-xl border-b border-white/5">
-        <div class="text-2xl font-black tracking-tighter italic">STARS <span class="text-[#d4af37]">WSD</span></div>
-        <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400 uppercase tracking-widest">
-            <a href="#steps" class="hover:text-white transition">Panduan</a>
-            <a href="#size-guide" class="hover:text-white transition">Size Guide</a>
-            <a href="#payment" class="hover:text-white transition">Pembayaran</a>
-        </div>
-        <button onclick="openWA()" class="bg-white text-black px-6 py-2 rounded-full text-xs font-bold hover:bg-[#d4af37] transition-all">ORDER NOW</button>
+    <nav class="fixed w-full z-50 px-4 py-4 flex justify-between items-center bg-black/80 backdrop-blur-xl border-b border-white/5">
+        <div class="text-xl font-black tracking-tighter italic">STARS <span class="text-[#d4af37]">WSD</span></div>
+        <button onclick="openWA()" class="bg-white text-black px-4 py-1.5 rounded-full text-[10px] font-bold hover:bg-[#d4af37] transition-all tracking-wider">ORDER</button>
     </nav>
 
     <!-- Hero -->
-    <section class="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#1a1a1a] via-black to-black">
-        <div data-aos="zoom-in" class="mb-6 p-3 rounded-full bg-white/5 border border-white/10">
-            <i data-lucide="sparkles" class="w-6 h-6 text-[#d4af37]"></i>
+    <section class="hero-min-height flex flex-col items-center justify-center text-center px-6 pt-24 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#1a1a1a] via-black to-black">
+        <div data-aos="zoom-in" class="mb-4 p-2 rounded-full bg-white/5 border border-white/10">
+            <i data-lucide="sparkles" class="w-4 h-4 text-[#d4af37]"></i>
         </div>
-        <h1 data-aos="fade-up" class="text-6xl md:text-8xl font-black mb-4 tracking-tighter">
+        <h1 data-aos="fade-up" class="text-4xl md:text-7xl font-black mb-3 tracking-tighter uppercase">
             CARA ORDER <br> <span class="gold-gradient">STARS WSD</span>
         </h1>
-        <p data-aos="fade-up" data-aos-delay="100" class="max-w-2xl text-gray-400 text-lg mb-12">
-            Ikuti panduan mudah untuk mendapatkan koleksi kaos premium kami langsung melalui WhatsApp Admin.
+        <p data-aos="fade-up" data-aos-delay="100" class="max-w-xs md:max-w-2xl text-gray-400 text-sm md:text-lg mb-8 leading-relaxed">
+            Panduan resmi pemesanan koleksi premium melalui WhatsApp Admin.
         </p>
-        <div data-aos="fade-up" data-aos-delay="200" class="flex flex-col sm:flex-row gap-4">
-            <button onclick="document.getElementById('steps').scrollIntoView({behavior:'smooth'})" class="px-10 py-4 rounded-xl border border-white/20 font-bold hover:bg-white/5 transition">Lihat Langkah</button>
-            <button onclick="openWA()" class="btn-gold px-10 py-4 rounded-xl shadow-xl shadow-[#d4af37]/20 flex items-center justify-center gap-2">
-                <i data-lucide="message-square" class="w-5 h-5"></i> Chat Admin Sekarang
+        <div data-aos="fade-up" data-aos-delay="200" class="flex flex-col gap-3 w-full max-w-[280px]">
+            <button onclick="openWA()" class="btn-gold w-full py-3.5 rounded-xl shadow-lg shadow-[#d4af37]/10 flex items-center justify-center gap-2 text-sm">
+                <i data-lucide="message-square" class="w-4 h-4"></i> Chat Admin Sekarang
             </button>
+            <button onclick="document.getElementById('steps').scrollIntoView({behavior:'smooth'})" class="w-full py-3 rounded-xl border border-white/10 font-bold text-xs text-gray-400 hover:bg-white/5 transition">Lihat Panduan</button>
         </div>
     </section>
 
     <!-- Main Steps -->
-    <section id="steps" class="py-24 px-6 max-w-6xl mx-auto">
-        <div class="grid md:grid-cols-2 gap-12 items-start">
+    <section id="steps" class="section-padding px-4 max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-6 items-start">
             
             <!-- Step List -->
-            <div class="space-y-6">
-                <!-- Step 1 -->
-                <div data-aos="fade-right" class="glass-card p-8 rounded-3xl group">
-                    <span class="step-badge">Step 1</span>
-                    <h3 class="text-2xl font-bold mt-4 mb-2">Pilih Desain & Warna</h3>
-                    <p class="text-gray-400 leading-relaxed">Pilih katalog terbaru di Instagram <span class="text-white font-bold">@STARS.WSD</span>. Pastikan Anda mencatat kode desainnya.</p>
+            <div class="space-y-4">
+                <div data-aos="fade-up" class="glass-card p-6 rounded-2xl">
+                    <span class="step-badge">01</span>
+                    <h3 class="text-lg font-bold mt-3 mb-1 uppercase tracking-tight">Pilih Katalog</h3>
+                    <p class="text-gray-400 text-sm">Cek desain terbaru di Instagram <span class="text-white font-bold">@STARS.WSD</span>.</p>
                 </div>
 
-                <!-- Step 2 -->
-                <div data-aos="fade-right" data-aos-delay="100" class="glass-card p-8 rounded-3xl border-l-4 border-l-[#d4af37]">
-                    <span class="step-badge">Step 2</span>
-                    <h3 class="text-2xl font-bold mt-4 mb-2">Chat WA Admin</h3>
-                    <p class="text-gray-400 mb-4 italic">Gunakan format pesanan untuk respon lebih cepat:</p>
-                    <div class="bg-black/40 p-4 rounded-xl border border-white/5 text-sm font-mono text-gray-300">
-                        Nama | No.HP | Alamat | Kode Desain | Warna | Ukuran | Jumlah
+                <div data-aos="fade-up" class="glass-card p-6 rounded-2xl border-l-2 border-l-[#d4af37]">
+                    <span class="step-badge">02</span>
+                    <h3 class="text-lg font-bold mt-3 mb-1 uppercase tracking-tight">Format Pesanan</h3>
+                    <p class="text-gray-400 text-xs mb-3 italic">Copy & isi format berikut:</p>
+                    <div class="bg-black/40 p-3 rounded-lg border border-white/5 text-[10px] font-mono text-gray-400 leading-tight">
+                        Nama | No.HP | Alamat | Kode | Warna | Size | Jumlah
                     </div>
                 </div>
 
-                <!-- Step 3 -->
-                <div data-aos="fade-right" data-aos-delay="200" class="glass-card p-8 rounded-3xl">
-                    <span class="step-badge">Step 3</span>
-                    <h3 class="text-2xl font-bold mt-4 mb-2">Proses & Pengiriman</h3>
-                    <p class="text-gray-400">Estimasi produksi 3-5 hari kerja. Pengiriman melalui <span class="text-white font-bold">JNE/J&T/Sicepat</span>. No Resi akan diinfokan segera!</p>
+                <div data-aos="fade-up" class="glass-card p-6 rounded-2xl">
+                    <span class="step-badge">03</span>
+                    <h3 class="text-lg font-bold mt-3 mb-1 uppercase tracking-tight">Produksi & Kirim</h3>
+                    <p class="text-gray-400 text-sm">Estimasi 3-5 hari kerja melalui <span class="text-white font-bold">JNE/J&T/Sicepat</span>.</p>
                 </div>
             </div>
 
-            <!-- Size Guide Section -->
-            <div id="size-guide" data-aos="fade-left" class="glass-card p-8 rounded-[40px] sticky top-32">
-                <div class="flex items-center gap-4 mb-8">
-                    <div class="p-3 bg-[#d4af37]/10 rounded-2xl">
-                        <i data-lucide="maximize" class="w-6 h-6 text-[#d4af37]"></i>
+            <!-- Size Guide -->
+            <div id="size-guide" data-aos="fade-up" class="glass-card p-6 rounded-3xl">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="p-2 bg-[#d4af37]/10 rounded-lg text-[#d4af37]">
+                        <i data-lucide="maximize" class="w-5 h-5"></i>
                     </div>
-                    <div>
-                        <h2 class="text-2xl font-bold">Size Guide</h2>
-                        <p class="text-sm text-gray-500">Local/Regular Fit</p>
-                    </div>
+                    <h2 class="text-xl font-bold uppercase tracking-tight">Size Guide</h2>
                 </div>
 
-                <div class="overflow-x-auto">
+                <div class="overflow-hidden rounded-xl border border-white/5">
                     <table class="w-full text-left size-table">
                         <thead>
                             <tr>
-                                <th class="p-4 rounded-tl-xl text-xs uppercase tracking-widest">Ukuran</th>
-                                <th class="p-4 text-xs uppercase tracking-widest text-center">P (cm)</th>
-                                <th class="p-4 rounded-tr-xl text-xs uppercase tracking-widest text-center">L (cm)</th>
+                                <th class="p-3 uppercase tracking-widest">Size</th>
+                                <th class="p-3 uppercase tracking-widest text-center">Panjang</th>
+                                <th class="p-3 uppercase tracking-widest text-center">Lebar</th>
                             </tr>
                         </thead>
                         <tbody class="text-gray-300">
-                            <tr><td class="p-4 font-bold">S</td><td class="p-4 text-center">66</td><td class="p-4 text-center">46</td></tr>
-                            <tr><td class="p-4 font-bold">M</td><td class="p-4 text-center">69</td><td class="p-4 text-center">49</td></tr>
-                            <tr><td class="p-4 font-bold">L</td><td class="p-4 text-center">72</td><td class="p-4 text-center">52</td></tr>
-                            <tr><td class="p-4 font-bold">XL</td><td class="p-4 text-center">75</td><td class="p-4 text-center">55</td></tr>
-                            <tr><td class="p-4 font-bold text-[#d4af37]">2XL</td><td class="p-4 text-center">78</td><td class="p-4 text-center">58</td></tr>
-                            <tr><td class="p-4 font-bold text-[#d4af37]">3XL</td><td class="p-4 text-center">81</td><td class="p-4 text-center">61</td></tr>
+                            <tr><td class="font-bold">S</td><td class="text-center">66</td><td class="text-center">46</td></tr>
+                            <tr><td class="font-bold">M</td><td class="text-center">69</td><td class="text-center">49</td></tr>
+                            <tr><td class="font-bold">L</td><td class="text-center">72</td><td class="text-center">52</td></tr>
+                            <tr><td class="font-bold">XL</td><td class="text-center">75</td><td class="text-center">55</td></tr>
+                            <tr><td class="font-bold text-[#d4af37]">2XL</td><td class="text-center">78</td><td class="text-center">58</td></tr>
+                            <tr><td class="font-bold text-[#d4af37]">3XL</td><td class="text-center">81</td><td class="text-center">61</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p class="mt-6 text-xs text-gray-500 italic text-center text-balance">*Pastikan ukuran sudah sesuai sebelum memesan.</p>
             </div>
-
         </div>
     </section>
 
     <!-- Payment -->
-    <section id="payment" class="py-24 bg-white text-black">
+    <section id="payment" class="py-16 bg-white text-black rounded-t-[32px]">
         <div class="max-w-4xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 data-aos="fade-up" class="text-4xl font-black uppercase tracking-tighter mb-4">Konfirmasi Pembayaran</h2>
-                <p data-aos="fade-up" class="text-gray-500">Transfer dahulu (LUNAS) baru pesanan diproses.</p>
+            <div class="text-center mb-10">
+                <h2 class="text-2xl font-black uppercase tracking-tighter mb-2">Metode Bayar</h2>
+                <p class="text-xs text-gray-500 font-medium">LUNAS = PROSES</p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- BCA -->
-                <div data-aos="zoom-in" class="bg-gray-100 p-8 rounded-[30px] flex items-center justify-between group hover:bg-black hover:text-white transition-all duration-500">
+            <div class="space-y-3">
+                <div class="bg-gray-100 p-5 rounded-2xl flex items-center justify-between group">
                     <div>
-                        <p class="text-sm font-bold opacity-50 mb-1">BANK BCA</p>
-                        <p id="bca-num" class="text-2xl font-black mb-1">Sedang dalam perbaikan</p>
-                        <p class="text-sm opacity-60">a/n STARS WSD</p>
+                        <p class="text-[10px] font-bold opacity-40">BANK BCA</p>
+                        <p class="text-lg font-black italic">DALAM PERBAIKAN</p>
                     </div>
-                    <button onclick="copyAccount('XXXX-XXXX-XXXX')" class="p-4 bg-white shadow-lg rounded-2xl text-black group-hover:bg-[#d4af37]">
-                        <i data-lucide="copy" class="w-5 h-5"></i>
+                    <button class="p-3 bg-white rounded-xl text-black shadow-sm">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
                     </button>
                 </div>
 
-                <!-- Digital Pay -->
-                <div data-aos="zoom-in" data-aos-delay="100" class="bg-gray-100 p-8 rounded-[30px] flex items-center justify-between hover:bg-black hover:text-white transition-all duration-500">
+                <div class="bg-gray-100 p-5 rounded-2xl flex items-center justify-between">
                     <div>
-                        <p class="text-sm font-bold opacity-50 mb-1">LAINNYA</p>
-                        <p class="text-2xl font-black mb-1">DANA / QRIS</p>
-                        <p class="text-sm opacity-60">Tanyakan admin via Chat</p>
+                        <p class="text-[10px] font-bold opacity-40">DIGITAL PAY</p>
+                        <p class="text-lg font-black uppercase">DANA / QRIS</p>
                     </div>
-                    <div class="p-4 bg-white shadow-lg rounded-2xl text-black">
-                        <i data-lucide="qr-code" class="w-5 h-5"></i>
+                    <div class="p-3 bg-white rounded-xl text-black">
+                        <i data-lucide="qr-code" class="w-4 h-4"></i>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer CTA -->
-    <footer class="py-32 px-6 text-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
-        <div data-aos="fade-up" class="relative z-10">
-            <h2 class="text-4xl md:text-5xl font-black mb-8">HUBUNGI KAMI DI WHATSAPP</h2>
-            <div class="inline-flex flex-col items-center">
-                <button onclick="openWA()" class="btn-gold px-12 py-6 rounded-[24px] text-2xl flex items-center gap-4 hover:scale-105 active:scale-95 transition shadow-2xl shadow-[#d4af37]/30">
-                    <i data-lucide="phone-call" class="w-8 h-8"></i> 0882-6915-7260
-                </button>
-                <p class="mt-6 text-gray-500 font-bold tracking-[0.3em] uppercase">(ADMIN STARS WSD)</p>
-            </div>
+    <!-- Footer -->
+    <footer class="py-20 px-6 text-center">
+        <div data-aos="fade-up" class="max-w-xs mx-auto">
+            <h2 class="text-2xl font-black mb-6 leading-tight uppercase">HUBUNGI ADMIN</h2>
+            <button onclick="openWA()" class="btn-gold w-full py-4 rounded-2xl text-lg flex items-center justify-center gap-3 shadow-xl shadow-[#d4af37]/20">
+                <i data-lucide="phone" class="w-5 h-5"></i> 0882-6915-7260
+            </button>
+            <p class="mt-4 text-[10px] text-gray-500 font-bold tracking-widest uppercase italic">Fast Response: 09:00 - 21:00</p>
         </div>
         
-        <div class="mt-32 pt-12 border-t border-white/5 text-xs text-gray-700 font-medium">
-            &copy; 2026 STARS WSD CLOTHING. SEMUA HAK DILINDUNGI.
+        <div class="mt-20 pt-8 border-t border-white/5 text-[10px] text-gray-700 font-bold uppercase tracking-widest">
+            &copy; 2026 STARS WSD CLOTHING
         </div>
     </footer>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        AOS.init({ duration: 800, once: true });
+        AOS.init({ duration: 600, once: true, disable: 'mobile' === false });
         lucide.createIcons();
 
         function openWA() {
@@ -247,22 +232,8 @@ Jumlah: `;
         }
 
         function copyAccount(num) {
-            const el = document.createElement('textarea');
-            el.value = num;
-            document.body.appendChild(el);
-            el.select();
-            document.execCommand('copy');
-            document.body.removeChild(el);
-            
-            // Notification feedback
-            const btn = event.currentTarget;
-            const originalIcon = btn.innerHTML;
-            btn.innerHTML = '<i data-lucide="check" class="w-5 h-5 text-green-500"></i>';
-            lucide.createIcons();
-            setTimeout(() => {
-                btn.innerHTML = originalIcon;
-                lucide.createIcons();
-            }, 2000);
+            // Placeholder for copy function
+            console.log("Copying: " + num);
         }
     </script>
 </body>
